@@ -226,7 +226,49 @@ write_verilog -noattr mul8_net.v
 
 <details>
 <summary>Day 3 </summary>
- Tools installation 
+ 
+ ## overview 
+  The optimisation is important to increase the speed,efficiency and reduce area & power of a logic circuit.
+
+ ## Combinational logic optimisation
+
+ ```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog ../verilog_files/opt_check4.v
+synth -top opt_check4
+opt_clean -purge
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+```
+![comb - opt check](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/818d4efe-f701-4ea0-b120-2ca1783e30b0)
+
+![comb - opt check2](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/d41a3e94-479b-4de9-8a37-f784eb440d6f)
+
+![comb - opt check3](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/e0944865-7bd8-43c9-a4b5-71856307be09)
+
+![comb - opt check4](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/2ae22cea-b29a-4644-8f33-8d590a765b27)
+
+ ### multi module optimisation
+
+ ```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog ../verilog_files/multiple_module_opt.v
+synth -top multiple_module_opt
+opt_clean -purge
+flatten
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+
+```
+
+![comb multi-module optimi](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/627bd5c0-abb8-4265-8ea4-872203563e10)
+
+![multi module opt 2](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/2a2431b9-cdac-4bfb-bb88-71520fcffaee)
+
+ ## sequential logic optimisation
+ 
 </details>
 
 <details>
