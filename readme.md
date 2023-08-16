@@ -8,8 +8,9 @@
 installed iverilog using below command
 
 ``` sudo apt-get install iverilog ```
+![iverilog](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/22533fbf-21b1-46de-95c0-e1399d7dd77b)
 
-![iverilog_op](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/9ec76792-394c-442b-9f27-b797bb180796)
+
 
 ### 2. gtkwave
 
@@ -34,7 +35,8 @@ sudo apt-get install build-essential clang bison flex \
  make 
  sudo make install
 ``` 
-![Uploading yosis.png…]()
+![yosis](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/00c32b98-0539-4639-b359-00254b92588a)
+
 
 </details>
 
