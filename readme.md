@@ -91,7 +91,54 @@ show
 
 <details>
 <summary>Day 2 </summary>
- Tools installation 
+ 
+ ## overview
+ As part of this section ,we have gone through the lib files, Hierarchial synthesis, sub-module synthesis Flat synthesis, efficient Flop coding styles and optimizations.
+
+ ## multiple modules synthesis
+ To synthesize multiple modules execute below commands
+
+ ```
+yosys
+read_verilog multiple_modules.v
+synth -top multiple_modules
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show multiple_modules
+write_verilog -noattr multiple_modules_hier.v
+```
+![day-2 multiple modules graph](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/d5ef3ebc-21a3-47ae-8896-48e672e03ab7)
+![multi modu -netlist](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/6e81b8a5-4851-4a30-bdfd-860f80fcf842)
+
+ ## sub-module synthesis 
+we need to specify in the synth command which submodule to use 
+
+```
+synth -top sub_module1
+show
+```
+![sub module synthesis](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/a1d80dc6-fc08-40cd-8ae1-ddfd1863c3d3)
+
+ ## Flat synthesis
+Flat synthesis will synthesise the entire design including sub-modules. execute below commands.
+
+```
+yosys
+read_verilog multiple_modules.v
+synth -top multiple_modules
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+flatten
+show
+write_verilog -noattr multiple_modules_flat.v
+!gvim multiple_modules_flat.v
+```
+
+![flatten -graph](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/650a660b-5bdb-40ad-a05f-8bc0c19db677)
+
+![flatten -netlist](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/07e61ef0-d235-4e44-a405-3fb602041275)
+
+ ## Different Flipflops coding styles and optimisations
+
+ 
 </details>
 
 <details>
