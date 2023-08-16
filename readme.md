@@ -137,8 +137,66 @@ write_verilog -noattr multiple_modules_flat.v
 ![flatten -netlist](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/07e61ef0-d235-4e44-a405-3fb602041275)
 
  ## Different Flipflops coding styles and optimisations
-
  
+ ### D-FlipFlop with asynchronous reset
+execute below commands 
+
+```
+iverilog dff_asyncres.v tb_dff_asyncres.v
+./a.out
+gtkwave tb_dff_asyncres.vcd
+
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog ../verilog_files/dff_asyncres.v
+synth -top dff_asyncres
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+```
+![asynres - gtk](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/5716e622-382f-47be-9fd5-6c81b8c499a7)
+
+![asynres - yosy](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/9c1da0cc-deab-483d-932a-45ef05d942a9)
+
+ ### D-FlipFlop with synchronous reset
+
+ ```
+iverilog dff_syncres.v tb_dff_syncres.v
+./a.out
+gtkwave tb_dff_syncres.vcd
+
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog ../verilog_files/dff_syncres.v
+synth -top dff_syncres
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+```
+
+![synres - gtk1](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/dddad6ed-3c41-4883-88b9-858c9d2d738e)
+
+![synres - yos](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/68c01cfd-817a-40fc-bb60-2d0fe4701d19)
+
+ ### D-FlipFlop with asynchronous set
+
+ ```
+iverilog dff_async_set.v tb_dff_async_set.v
+./a.out
+gtkwave tb_dff_async_set.vcd
+
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog ../verilog_files/dff_async_set.v
+synth -top dff_async_set
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+```
+![async set - gtk](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/799d7360-1813-4611-969c-32a291522f77)
+
+![async set - yosy](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/c4fd95c7-b3e5-43cb-ad67-df8b047fab97)
+
 </details>
 
 <details>
