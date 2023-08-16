@@ -447,6 +447,9 @@ show
 
 ```
 
+![mux-gen gtk](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/c9df7e94-ed75-4a91-b0c5-e8b048e798)
+![mux-gen yos](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/7abdacec-09d4-43ee-b885-313f34143934)
+99)
 
 gate level simulation 
 
@@ -455,8 +458,17 @@ iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_
 ./a.out
 gtkwave tb_mux_generate.vcd
 ```
+![mux-gen gls](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/aefdde0e-7609-4e6e-97e5-bea72e262d95)
 
 ### demux generate
+simulation and logic synthesis 
+
+![demux gtk](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/c81546e1-2a3d-403e-9749-2d103f950815)
+![demux yos](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/5aa16607-6b0f-455b-b729-797e896f5a86)
+
+gate level simulation - we can see the GLS and gtkwave results are identical.
+
+![demux gls](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/991049ef-80cd-4c2b-926d-38ba924535ac)
 
 ### rca
 
@@ -475,6 +487,9 @@ abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 
 ```
+![RCA gtk](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/dfe3dfdb-0ac7-4ae3-8aad-21866472db8f)
+![rca yos](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/65e8d9b0-ed93-4b76-ae98-8a5ca68f647a)
+
 
 gate level simulation
 
@@ -484,4 +499,6 @@ iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_
 gtkwave tb_demux_generate.vcd
 
 ```
+![rca gls](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/9cabd76c-5732-48bc-9c15-ccabf7e34d69)
+
 </details>
