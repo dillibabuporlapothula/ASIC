@@ -273,7 +273,68 @@ show
 
 <details>
 <summary>Day 4 </summary>
- Tools installation 
+
+ ## overview 
+ In the Gate level simulation we will look at the transistor level representation of the circuit and verfiy if it is working as expected.
+ ###  mux using ternary operator
+
+
+```
+iverilog ternary_operator_mux.v tb_ternary_operator_mux.v
+./a.out
+gtkwave tb_ternary_operator_mux.vcd
+
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog ../verilog_files/ternary_operator_mux.v
+synth -top ternary_operator_mux
+write_verilog -noattr ternary_operator_mux_netlist.v
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+```
+![ternay mux -gtk](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/0e93c8d2-ead0-4a2e-84e9-d07922ccf168)
+
+![ternay mux - yos](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/1fe09b37-9d8f-430c-8017-215ccb3a1087)
+
+ ### bad mux
+```
+iverilog bad_mux.v tb_bad_mux.v
+./a.out
+gtkwave tb_bad_mux.vcd
+
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog ../verilog_files/bad_mux.v
+synth -top bad_mux
+write_verilog -noattr bad_mux_net.v
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+```
+![bad mux - yos](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/01ecf3f7-bed1-44fb-a552-6200d43a526a)
+
+gate level simulation
+
+```
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v bad_mux_net.v tb_bad_mux.v
+./a.out
+gtkwave tb_bad_mux.vcd
+```
+![bad mux - gtk](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/164fe964-2951-4364-b6a1-d29bf6d4c31b)
+
+ ### blocking caveat
+ 
+![blocking cavet -  yos](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/84e74830-3345-4ff6-bfab-c1d88fd01784)
+
+ gate level simulation
+
+ ```
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v blocking_caveat_net.v tb_blocking_caveat.v
+./a.out
+gtkwave tb_blocking_caveat.vcd
+
+```
+![blocking cavet - gtk](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/2f6c5bb0-bc30-4d43-a16e-ea189e4c8ebb)
+
 </details>
 
 <details>
