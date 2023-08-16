@@ -39,10 +39,54 @@ sudo apt-get install build-essential clang bison flex \
 
 
 </details>
-
+ 
 <details>
 <summary>Day 1 </summary>
- Tools installation 
+ 
+ ## overview
+  Here we have taken 2*1 mux and we synthesized it using iverilog and simulated it using gtkwave to view waveforms and yosys to generate the netlist.
+
+ ## iverilog
+   First clone the ``` git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git ``` repository which has all the required verilog codes and library.
+
+Now execute below commands to generate vcd file.
+
+```
+cd sky130RTLDesignAndSynthesisWorkshop/
+cd verilog_files/
+iverilog good_mux.v tb_good_mux.v
+./a.out
+```
+![iverilog_op](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/bd399863-960e-4d08-8cdf-6b91626dfa31)
+
+
+ ## gtkwave
+
+ execute below command to view the vcd file as waveform.
+
+ ``` gtkwave tb_good_mux.vcd ```
+ 
+![gtkwave_op](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/3f4aadae-41bb-4a2a-83f8-7b1b7004e30a)
+
+ ## yosys
+
+ To generate a logic block and to genarate a netlist for our RTL code execute below commands.
+
+```
+yosys
+read_liberty -lib VLSI/sky130RTLDesignAndSynthesisWorkshop/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog VLSI/sky130RTLDesignAndSynthesisWorkshop/verilog_files/good_mux.v
+synth -top good_mux
+abc -liberty VLSI/sky130RTLDesignAndSynthesisWorkshop/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+ ![yosys-ckt](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/b3d3ed97-300a-47e7-bf3a-f7b8a7793d80)
+
+ Netlist :
+ 
+![yosys-code1](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/f1ef6a72-377f-4194-b94d-6083731bfe44)
+
+
 </details>
 
 <details>
