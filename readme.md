@@ -197,6 +197,31 @@ show
 
 ![async set - yosy](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/c4fd95c7-b3e5-43cb-ad67-df8b047fab97)
 
+## Multipliers
+### mult2
+
+```
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mult_2.v
+synth -top mul2
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show mul2
+write_verilog -noattr mul2_net.v
+```
+![mult 2 -](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/c2289666-672e-4471-b587-c9c631f17477)
+
+### mult8
+
+```
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mult_8.v
+synth -top mul8
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show mul8
+write_verilog -noattr mul8_net.v
+```
+![mult 8](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/3a7b299e-c655-49db-a2cd-0ee1d9baba72)
+
 </details>
 
 <details>
