@@ -9,6 +9,7 @@ installed iverilog using below command
 
 ``` sudo apt-get install iverilog ```
 
+![iverilog_op](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/9ec76792-394c-442b-9f27-b797bb180796)
 
 ### 2. gtkwave
 
@@ -17,11 +18,13 @@ installed gtkwave using below command
 ``` sudo apt install gtkwave ```
 
 
+![iverilog](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/43d71236-7a63-4f4d-ba76-f43541190d8b)
 
 ### 3. YOSYS
 
 commands to install yosys
-``` git clone https://github.com/YosysHQ/yosys.git
+``` git clone https://github.com/YosysHQ/yosys.git![yosis](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/fb924020-6bf1-4ef2-8387-34a5b6aae18a)
+
 cd yosys 
 sudo apt install make (if not installed)
 sudo apt-get install build-essential clang bison flex \
@@ -31,6 +34,7 @@ sudo apt-get install build-essential clang bison flex \
  make 
  sudo make install
 ``` 
+![Uploading yosis.png…]()
 
 </details>
 
