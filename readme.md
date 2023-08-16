@@ -339,5 +339,149 @@ gtkwave tb_blocking_caveat.vcd
 
 <details>
 <summary>Day 5 </summary>
- Tools installation 
+
+  ## overview
+   In this section we will see the correct way of using conditional statements i.e if and also switch statement and how incorrect use of them can cause creation of inferred latch.
+
+ ## incomplete if 
+
+ ```
+iverilog incomp_if.v tb_incomp_if.v
+./a.out
+gtkwave tb_incomp_if.vcd
+
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog ../verilog_files/incomp_if.v
+synth -top incomp_if
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+
+```
+### incomp_if
+![incom if -gtk](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/71e75e3a-0373-4d17-8d74-77ddcad23cd4)
+
+![incom if - yos](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/7b2d2cba-6947-4f6e-95f9-4c9c1a1dd1f9)
+
+### incomp_if2
+![incom if 2-gtk](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/a1e77ab1-0e47-4701-a6e3-5aed7645ed21)
+
+![incom if 2-  yos](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/ad8a0454-05d7-4ee8-b13a-5bbb98ecae90)
+
+## incomplete case 
+
+```
+iverilog incomp_case.v tb_incomp_case.v
+./a.out
+gtkwave tb_incomp_case.vcd
+
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog ../verilog_files/incomp_case.v
+synth -top incomp_case
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+
+```
+![incom case -gtk](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/86e46be4-4445-4b14-a7e2-1a4a66f503f0)
+
+![incom case - yos](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/79fe78da-90bb-476f-b8a2-2d4d77c72ee0)
+
+
+## complete overlapping statement
+
+```
+iverilog comp_case.v tb_comp_case.v
+./a.out
+gtkwave tb_comp_case.vcd
+
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog ../verilog_files/comp_case.v
+synth -top comp_case
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+```
+![complete case - gtk](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/e3179194-b630-47a3-8036-6b5b02d12ae1)
+
+![complete case - yos](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/2305e664-d3c8-4c45-9da6-4babc7f7e4fa)
+
+### bad case
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog ../verilog_files/bad_case.v
+synth -top bad_case
+write_verilog bad_case_net.v
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+```
+![bad case - gtk](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/3a4da519-92c3-438e-80a5-73e3781e40f3)
+
+![bad case - yos](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/1612bb99-71bd-4695-b822-767e617855cb)
+
+gate level simulation - from GLS we can see the mismatch
+
+```
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v bad_case_net.v tb_bad_case.v
+./a.out
+gtkwave tb_bad_case.vcd
+```
+![bad case - gls](https://github.com/dillibabuporlapothula/ASIC/assets/141803312/cd6fc55c-c96d-4921-9b9e-156d70eeb824)
+
+### mux generate
+
+```
+iverilog mux_generate tb_mux_generate.v
+./a.out
+gtkwave tb_mux_generate.vcd
+
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog ../verilog_files/mux_generate.v
+synth -top mux_generate
+write_verilog mux_generate_net.v
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+
+```
+
+
+gate level simulation 
+
+```
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v mux_generate_net.v tb_mux_generate.v
+./a.out
+gtkwave tb_mux_generate.vcd
+```
+
+### demux generate
+
+### rca
+
+```
+iverilog fa.v rca.v tb_rca.v
+./a.out
+gtkwave tb_rca.vcd
+
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog ../verilog_files/rca.v
+read_verilog ../verilog_files/fa.v
+synth -top rca
+write_verilog rca_net.v
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+
+```
+
+gate level simulation
+
+```
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v rca_net.v tb_rca.v
+./a.out
+gtkwave tb_demux_generate.vcd
+
+```
 </details>
